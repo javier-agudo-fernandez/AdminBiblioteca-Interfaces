@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.FileChooser;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -25,71 +24,67 @@ import java.util.Stack;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+/**
+ * Controlador para la generación de carnets.
+ */
 public class GeneradorController {
 
-
-        // Campos del formulario
-        @FXML
-        private TextField nombreField;
-        @FXML
-        private Button buttonImg;
-
-        @FXML
-        private TextField apellidosField;
-        @FXML
-        private TextField idClienteField;
-        @FXML
-        private DatePicker fechaNacimientoPicker;
-        @FXML
-        private CheckBox discapacidadCheck;
-        @FXML
-        private CheckBox suscripcionPremiumCheck;
-        @FXML
-        private ComboBox<String> tipoDireccionComboBox;
-        @FXML
-        private TextField denominacionField;
-        @FXML
-        private TextField portalField;
-        @FXML
-        private TextField pisoLetraField;
-        @FXML
-        private TextField ciudadField;
-        @FXML
-        private ComboBox<String> provinciaComboBox;
-
-        @FXML
-        private ComboBox<String> languageComboBox;
-        @FXML
-        private MenuBar menuBar;  // Barra de menú (añadir esto a tu controlador)
-        @FXML
-        private MenuItem deshacerButton;
-        @FXML
-        private MenuItem rehacerButton;
+    @FXML
+    private TextField nombreField;
+    @FXML
+    private Button buttonImg;
+    @FXML
+    private TextField apellidosField;
+    @FXML
+    private TextField idClienteField;
+    @FXML
+    private DatePicker fechaNacimientoPicker;
+    @FXML
+    private CheckBox discapacidadCheck;
+    @FXML
+    private CheckBox suscripcionPremiumCheck;
+    @FXML
+    private ComboBox<String> tipoDireccionComboBox;
+    @FXML
+    private TextField denominacionField;
+    @FXML
+    private TextField portalField;
+    @FXML
+    private TextField pisoLetraField;
+    @FXML
+    private TextField ciudadField;
+    @FXML
+    private ComboBox<String> provinciaComboBox;
+    @FXML
+    private ComboBox<String> languageComboBox;
+    @FXML
+    private MenuBar menuBar;
+    @FXML
+    private MenuItem deshacerButton;
+    @FXML
+    private MenuItem rehacerButton;
     @FXML
     private Menu catMenuArchivo;
-
     @FXML
     private Menu catMenuEdicion;
 
-
-        private File fotoSeleccionada;
-        private GestorIdioma gestorIdioma;
-    // Stacks para deshacer y rehacer
+    private File fotoSeleccionada;
+    private GestorIdioma gestorIdioma;
     private Stack<String> undoStack = new Stack<>();
     private Stack<String> redoStack = new Stack<>();
     private String currentText = "";
 
+    /**
+     * Inicializa el controlador.
+     */
     @FXML
     public void initialize() {
         gestorIdioma = GestorIdioma.getInstancia();
-
-        // Inicializacion ComboBox con tipos de direcciones
         ObservableList<String> tiposDeDireccion = FXCollections.observableArrayList(
                 "Calle", "Avenida", "Plaza", "Camino", "Carretera", "Paseo", "Travesía", "Ronda", "Pasaje"
         );
         tipoDireccionComboBox.setItems(tiposDeDireccion);
 
-        // ComboBox con provincias de España
         ObservableList<String> provincias = FXCollections.observableArrayList(
                 "Álava", "Albacete", "Alicante", "Almería", "Asturias", "Ávila", "Badajoz", "Barcelona",
                 "Burgos", "Cáceres", "Cádiz", "Cantabria", "Castellón", "Ciudad Real", "Córdoba",
@@ -101,7 +96,6 @@ public class GeneradorController {
         );
         provinciaComboBox.setItems(provincias);
 
-        //Listeners a los campos para deshacer y rehacer
         agregarListenerCampo(nombreField);
         agregarListenerCampo(apellidosField);
         agregarListenerCampo(idClienteField);
@@ -110,7 +104,6 @@ public class GeneradorController {
         agregarListenerCampo(pisoLetraField);
         agregarListenerCampo(ciudadField);
 
-        // Inicializar el estilo CSS y actualizar los textos despues de toda la inicializacion
         javafx.application.Platform.runLater(() -> {
             Scene scene = tipoDireccionComboBox.getScene();
             if (scene != null) {
@@ -118,41 +111,42 @@ public class GeneradorController {
             }
             actualizarTextos();
         });
-        // Validaciones para campos de texto
+
         nombreField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]*")) {
-                nombreField.setText(oldValue); // Restaura el valor anterior si no son letras
+                nombreField.setText(oldValue);
             }
         });
         apellidosField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]*")) {
-                apellidosField.setText(oldValue); // Restaura el valor anterior si no son letras
+                apellidosField.setText(oldValue);
             }
         });
-        // Asignacion  aceleradores
+
         deshacerButton.setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
         rehacerButton.setAccelerator(KeyCombination.keyCombination("Ctrl+Y"));
     }
 
-    // Método para agregar listeners a los campos de texto
+    /**
+     * Agrega listeners a los campos de texto para deshacer y rehacer.
+     *
+     * @param campo el campo de texto
+     */
     private void agregarListenerCampo(TextField campo) {
         campo.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Solo agregar al undoStack si el campo es un TextField
             if (campo instanceof TextField) {
-                undoStack.push(oldValue);  // Guardamos el valor anterior
+                undoStack.push(oldValue);
             }
         });
     }
 
-    // Método para deshacer
+    /**
+     * Deshace la última acción.
+     */
     @FXML
     private void deshacer() {
-        // Verificamos que el stack de deshacer no esté vacío
         if (!undoStack.isEmpty()) {
-            // Recuperar el valor previo y restaurarlo
             String valorAnterior = undoStack.pop();
-
-            // Realizar la acción de deshacer solo si el control es un TextField
             if (valorAnterior != null) {
                 if (nombreField.isFocused()) {
                     nombreField.setText(valorAnterior);
@@ -169,17 +163,16 @@ public class GeneradorController {
                 } else if (ciudadField.isFocused()) {
                     ciudadField.setText(valorAnterior);
                 }
-
             }
-
-            // Si el redoStack tiene algún valor, lo guardamos para rehacer más tarde
             redoStack.push(valorAnterior);
         } else {
             System.out.println("No hay valores previos para deshacer.");
         }
     }
 
-    // Método para rehacer
+    /**
+     * Rehace la última acción deshecha.
+     */
     @FXML
     private void rehacer() {
         if (!redoStack.isEmpty()) {
@@ -189,7 +182,11 @@ public class GeneradorController {
         }
     }
 
-    // Método para obtener el valor actual de los campos
+    /**
+     * Obtiene el valor actual de los campos.
+     *
+     * @return el valor actual de los campos
+     */
     private String campoTextoActual() {
         return nombreField.getText() + "|" +
                 apellidosField.getText() + "|" +
@@ -200,7 +197,11 @@ public class GeneradorController {
                 ciudadField.getText();
     }
 
-    // Método para restaurar los valores de los campos
+    /**
+     * Restaura los valores de los campos.
+     *
+     * @param valores los valores a restaurar
+     */
     private void restaurarValorCampos(String valores) {
         String[] valoresCampos = valores.split("\\|");
         nombreField.setText(valoresCampos[0]);
@@ -212,26 +213,20 @@ public class GeneradorController {
         ciudadField.setText(valoresCampos[6]);
     }
 
+    /**
+     * Selecciona una foto.
+     */
     @FXML
     private void seleccionarFoto() {
-
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar foto de carnet");
-
-        // Filtros para tipos de archivos válidos
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.png", "*.jpeg"),
                 new FileChooser.ExtensionFilter("Todos los archivos", "*.*")
         );
-
-        // Se abre cuadro selector
         File rutaSeleccionada = fileChooser.showOpenDialog(null);
-
-        // Verificamos si se seleccionó un archivo
         if (rutaSeleccionada != null) {
             fotoSeleccionada = rutaSeleccionada;
-
-            // Aquí puedes guardar la ruta o mostrar la imagen en un ImageView
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -239,16 +234,15 @@ public class GeneradorController {
             alert.setContentText("No se encontro el archivo");
         }
     }
+
+    /**
+     * Genera una vista previa del carnet.
+     */
     @FXML
     private void generarVistaPrevia() {
-        // Validar los campos
         if (!validarCampos()) {
-
             return;
         }
-
-
-        // Recoger datos para mandarlos a la vista
         String nombre = nombreField.getText();
         String apellidos = apellidosField.getText();
         String idCliente = idClienteField.getText();
@@ -262,13 +256,12 @@ public class GeneradorController {
         String ciudad = ciudadField.getText();
         String provincia = provinciaComboBox.getValue();
 
-        // Crear el modelo del carnet con los datos
         CarnetDatos datos = new CarnetDatos(
                 nombre, apellidos, idCliente, fechaNacimiento,
                 tieneDiscapacidad, esPremium, tipoDireccion, denominacion,
                 portal, pisoLetra, ciudad, provincia, fotoSeleccionada
         );
-        //Cargamos la nueva vista con su estilo
+
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("vistaprevia.fxml"));
             Parent root = loader.load();
@@ -280,21 +273,22 @@ public class GeneradorController {
             stage.setScene(scene);
             stage.setTitle("Vista Previa del Carnet");
             stage.show();
-
-
-        } catch (IOException e){
-            System.out.println("Error al cargar el FXML" + e.getMessage()) ;
+        } catch (IOException e) {
+            System.out.println("Error al cargar el FXML" + e.getMessage());
         }
-
     }
 
+    /**
+     * Valida los campos del formulario.
+     *
+     * @return true si los campos son válidos, false en caso contrario
+     */
     private boolean validarCampos() {
         Scene scene = portalField.getScene();
         scene.getStylesheets().add(getClass().getResource("/com/adminbiblioteca/estilos/styles.css").toExternalForm());
 
         boolean esValido = true;
 
-        // Validar que todos los campos obligatorios estén llenos
         if (nombreField.getText().isEmpty() || apellidosField.getText().isEmpty()
                 || idClienteField.getText().isEmpty() || fechaNacimientoPicker.getValue() == null
                 || tipoDireccionComboBox.getValue() == null || provinciaComboBox.getValue() == null
@@ -305,7 +299,6 @@ public class GeneradorController {
             esValido = false;
         }
 
-        // Validar longitud del ID del cliente
         if (idClienteField.getText().length() < 5) {
             idClienteField.getStyleClass().add("error");
             mostrarAlerta("Error", "El ID de cliente debe tener al menos 5 dígitos.");
@@ -314,7 +307,6 @@ public class GeneradorController {
             idClienteField.getStyleClass().remove("error");
         }
 
-        // Validar que el portal sea numérico
         if (!portalField.getText().matches("\\d+")) {
             portalField.getStyleClass().add("error");
             mostrarAlerta("Error", "El portal debe ser un valor numérico.");
@@ -325,12 +317,23 @@ public class GeneradorController {
 
         return esValido;
     }
+
+    /**
+     * Muestra una alerta con un mensaje.
+     *
+     * @param titulo el título de la alerta
+     * @param mensaje el mensaje de la alerta
+     */
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle(titulo);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
+
+    /**
+     * Limpia el formulario.
+     */
     private void limpiarFormulario() {
         nombreField.clear();
         apellidosField.clear();
@@ -344,27 +347,33 @@ public class GeneradorController {
         pisoLetraField.clear();
         ciudadField.clear();
         provinciaComboBox.setValue(null);
-
-
     }
+
+    /**
+     * Crea un nuevo registro.
+     */
     @FXML
-    private void nuevoRegistro(){
+    private void nuevoRegistro() {
         limpiarFormulario();
     }
+
+    /**
+     * Cierra la aplicación.
+     */
     @FXML
     private void salir() {
         Stage stage = (Stage) languageComboBox.getScene().getWindow();
         stage.close();
     }
-    private void actualizarTextos() {
-        // Obtener el bundle con las traducciones
-        ResourceBundle bundle = gestorIdioma.getBundle();
 
+    /**
+     * Actualiza los textos de la interfaz según el idioma seleccionado.
+     */
+    private void actualizarTextos() {
+        ResourceBundle bundle = gestorIdioma.getBundle();
         Scene scene = nombreField.getScene();
         if (scene != null) {
             IdiomaUtil.actualizarTextos(scene.getRoot(), bundle);
         }
     }
 }
-
-

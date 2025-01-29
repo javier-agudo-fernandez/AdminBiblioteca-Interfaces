@@ -22,6 +22,9 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Controlador para la pantalla de carga (Splash Screen).
+ */
 public class SplashScreenController {
 
     @FXML
@@ -31,7 +34,11 @@ public class SplashScreenController {
 
     private MediaPlayer mediaPlayer;
 
-
+    /**
+     * Inicializa el controlador.
+     * Carga y reproduce el video de la Splash Screen en un MediaView.
+     * Configura una Timeline para actualizar la barra de progreso.
+     */
     @FXML
     public void initialize() {
         // Cargar el video de la Splash Screen y reproducirlo en un MediaView
@@ -52,23 +59,25 @@ public class SplashScreenController {
         timeline.play();
     }
 
-    // Cierra la ventana de la Splash Screen y muestra la ventana principal
+    /**
+     * Cierra la ventana de la Splash Screen y muestra la ventana principal.
+     */
     private void closeSplashScreen() {
         mediaPlayer.stop();  // Detener el video
         Stage splashStage = (Stage) mediaView.getScene().getWindow();
         splashStage.close();  // Cerrar la Splash Screen
         Platform.runLater(this::showMainApplication);
-
     }
 
-
-    // Método para mostrar la ventana principal
+    /**
+     * Muestra la ventana principal de la aplicación.
+     */
     private void showMainApplication() {
         try {
-        // Cargar ventana principal y mostrarla
-        Stage mainStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("login.fxml"));
-        Parent root = loader.load();
+            // Cargar ventana principal y mostrarla
+            Stage mainStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("login.fxml"));
+            Parent root = loader.load();
 
             Stage loginDialog = new Stage();
             Image icono = new Image(Objects.requireNonNull(App.class.getResourceAsStream("images/logobiblio.png")));

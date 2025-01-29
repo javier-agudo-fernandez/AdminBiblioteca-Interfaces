@@ -15,6 +15,9 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador para la pantalla de inicio de sesión.
+ */
 public class LoginController {
 
     @FXML
@@ -31,33 +34,36 @@ public class LoginController {
 
     private GestorIdioma gestorIdioma;
 
+    /**
+     * Inicializa el controlador.
+     */
     @FXML
     public void initialize() {
         gestorIdioma = GestorIdioma.getInstancia();
-        // Establecer el idioma predeterminado al iniciar la aplicación
         actualizarIdioma("es_ES");  // Idioma predeterminado
 
-        // Rellenar el ComboBox con las opciones de idioma
-        languageBox.getItems().addAll("Español", "English","Deutsch");
+        languageBox.getItems().addAll("Español", "English", "Deutsch");
         languageBox.setValue("Español");  // Idioma predeterminado
 
-        // Escuchar cambios en la selección del idioma
         languageBox.setOnAction(event -> {
             String idiomaSeleccionado = languageBox.getValue();
             if ("Español".equals(idiomaSeleccionado)) {
                 actualizarIdioma("es_ES");
             } else if ("English".equals(idiomaSeleccionado)) {
                 actualizarIdioma("en_US");
-            }
-            else if ("Deutsch".equals(idiomaSeleccionado)) {
+            } else if ("Deutsch".equals(idiomaSeleccionado)) {
                 actualizarIdioma("de_DE");
             }
         });
 
-        // Hacer que el botón de login sea el predeterminado cuando se presiona Enter
         loginButton.setDefaultButton(true);
     }
 
+    /**
+     * Maneja el evento de inicio de sesión.
+     *
+     * @param actionEvent el evento de acción
+     */
     @FXML
     public void iniciarSesion(ActionEvent actionEvent) {
         String usuario = userField.getText();
@@ -70,6 +76,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Abre la ventana del generador.
+     */
     private void abrirGenerador() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("generador.fxml"));
@@ -91,6 +100,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Muestra un mensaje de error de autenticación.
+     */
     private void mostrarError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error de autenticación");
@@ -99,8 +111,12 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    /**
+     * Actualiza el idioma de la interfaz.
+     *
+     * @param codigoIdioma el código del idioma
+     */
     private void actualizarIdioma(String codigoIdioma) {
-        // Actualizar el idioma en el GestorIdioma
         Locale nuevoLocale = new Locale(codigoIdioma.split("_")[0], codigoIdioma.split("_")[1]);
         gestorIdioma.setLocale(nuevoLocale);
 
