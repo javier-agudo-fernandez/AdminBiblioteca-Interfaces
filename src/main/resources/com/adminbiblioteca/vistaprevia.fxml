@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="800.0" prefWidth="1200.0" spacing="30.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adminbiblioteca.controladores.VistaPreviaController">
+   <children>
+      <StackPane prefHeight="54.0" prefWidth="1200.0" style="-fx-background-color: black;">
+         <children>
+            <Label fx:id="vistaPreviaTitle" prefHeight="53.0" prefWidth="533.0" text="CARNET GENERADO - VISTA PREVIA" textFill="WHITE">
+               <font>
+                  <Font name="Malgun Gothic Semilight" size="33.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <AnchorPane fx:id="panelCarnet" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="637.0" prefWidth="1012.0" style="-fx-background-size: cover;       -fx-background-position: center;       -fx-border-color: black;       -fx-border-width: 5;">
+         <children>
+            <ImageView fitHeight="498.0" fitWidth="568.0" layoutX="257.0" layoutY="50.0" opacity="0.16" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logobiblio.png" />
+               </image></ImageView>
+            <ImageView fx:id="fotoImageView" fitHeight="198.0" fitWidth="195.0" layoutX="772.0" layoutY="41.0" pickOnBounds="true" />
+            <Label layoutX="67.0" layoutY="116.0" text=" ID ESTUDIANTE">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="idClienteLabel" layoutX="67.0" layoutY="124.0" prefHeight="39.0" prefWidth="104.0" text="128392">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="293.0" layoutY="41.0" text="CARNET BIBLIOTECARIO">
+               <font>
+                  <Font name="Maiandra GD" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="224.0" text="NOMBRE">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="nombreLabel" layoutX="71.0" layoutY="232.0" prefHeight="39.0" prefWidth="104.0" text="Javier">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="283.0" text="APELLIDOS">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="apellidoLabel" layoutX="71.0" layoutY="291.0" prefHeight="40.0" prefWidth="394.0" text="Agudo Fernández">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="345.0" text="FECHA NACIMIENTO">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="fechaNacimientoLabel" layoutX="71.0" layoutY="353.0" prefHeight="40.0" prefWidth="273.0" text="27/07/2005">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="404.0" text="DOMICILIO">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="direccionLabel" layoutX="71.0" layoutY="412.0" prefHeight="40.0" prefWidth="687.0" text="Calle Terradas, 3 Portal 4 5B">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="suscripcionLabel" layoutX="769.0" layoutY="254.0" prefHeight="36.0" prefWidth="201.0" text="Cliente Premium">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="57.0" fitWidth="230.0" layoutX="752.0" layoutY="546.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Código-de-barras-Code39.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="barcodeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="836.0" layoutY="599.0" minWidth="-Infinity" prefHeight="17.0" prefWidth="67.0" textAlignment="CENTER" />
+            <Label layoutX="71.0" layoutY="509.0" text="FECHA EMISION">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="fechaEmisionLabel" layoutX="71.0" layoutY="517.0" prefHeight="40.0" prefWidth="273.0" text="27/07/2005">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="272.0" layoutY="509.0" text="FECHA VENCIMIENTO">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="fechaVencimientoLabel" layoutX="272.0" layoutY="517.0" prefHeight="40.0" prefWidth="273.0" text="27/07/2005">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="1200.0" spacing="10.0">
+         <Button fx:id="buttonImpresora" graphicTextGap="10" minWidth="-Infinity" onAction="#enviarImpresora" prefHeight="41.0" prefWidth="196.0" style="-fx-background-color: black; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0.5, 0, 0);" text="Enviar a impresora" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
+            <graphic>
+               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@images/icons8-puerta-abierta-impresora-50.png">
+                     </Image>
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="buttonPdf" graphicTextGap="10" minWidth="-Infinity" onAction="#enviarPdf" prefHeight="41.0" prefWidth="150.0" style="-fx-background-color: black; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0.5, 0, 0);" text="Exportar a PDF" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+            <graphic>
+               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@images/icons8-pdf-50.png">
+                     </Image>
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <VBox.margin>
+            <Insets bottom="20.0" right="20.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

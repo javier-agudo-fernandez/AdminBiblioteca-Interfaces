@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adminbiblioteca.controladores.SplashScreenController">
+   <children>
+      <StackPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
+         <children>
+            <MediaView fx:id="mediaView" fitHeight="350.0" fitWidth="500.0" />
+            <ProgressBar fx:id="loadingBar" prefHeight="18.0" prefWidth="317.0" progress="0.0" stylesheets="@estilos/loading_bar.css" StackPane.alignment="BOTTOM_CENTER">
+               <StackPane.margin>
+                  <Insets bottom="35.0" />
+               </StackPane.margin>
+            </ProgressBar>
+         </children>
+      </StackPane>
+   </children>
+</VBox>

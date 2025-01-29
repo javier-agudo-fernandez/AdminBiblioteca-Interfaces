@@ -1,0 +1,17 @@
+/* Estilo básico para el ProgressBar */
+.progress-bar {
+    -fx-background-color: transparent; /* Fondo transparente por defecto */
+    -fx-pref-height: 30px;
+    -fx-pref-width: 400px;
+}
+
+/* Estilo del track */
+.progress-bar .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 10px;
+}
+
+.progress-bar .bar {
+    -fx-background-color: black;
+}

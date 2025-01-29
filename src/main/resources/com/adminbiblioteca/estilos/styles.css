@@ -1,0 +1,25 @@
+.error{
+    -fx-border-color: red ;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2;
+}
+.default-button {
+    -fx-background-color: black;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+}
+.button:hover {
+
+    -fx-scale-x: 1.05; /* Incrementa el tamaño en X */
+    -fx-scale-y: 1.05; /* Incrementa el tamaño en Y */
+}
+
+/* Estilo cuando el botón es presionado */
+.button:pressed {
+
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+
+
