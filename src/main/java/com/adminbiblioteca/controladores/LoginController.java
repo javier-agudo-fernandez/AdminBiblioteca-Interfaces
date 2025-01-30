@@ -60,7 +60,7 @@ public class LoginController {
     }
 
     /**
-     * Maneja el evento de inicio de sesión.
+     * Maneja el evento de inicio de sesión. Si el usuario y contraseña son correctos, abre la ventana del generador. Si no, muestra un mensaje de error.
      *
      * @param actionEvent el evento de acción
      */
@@ -77,7 +77,7 @@ public class LoginController {
     }
 
     /**
-     * Abre la ventana del generador.
+     * Carga y muestra la ventana del generador.
      */
     private void abrirGenerador() {
         try {
@@ -109,6 +109,24 @@ public class LoginController {
         alert.setHeaderText("Credenciales incorrectas");
         alert.setContentText("Verifica tu usuario y contraseña");
         alert.showAndWait();
+    }
+    @FXML
+    public void mostrarAyuda(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("help-view.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Ayuda");
+            stage.setScene(new Scene(fxmlLoader.load()));
+            stage.setResizable(false);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No se pudo abrir la ventana de ayuda");
+            alert.setContentText("Ocurrió un problema al intentar cargar la ventana de ayuda.");
+            alert.showAndWait();
+        }
     }
 
     /**

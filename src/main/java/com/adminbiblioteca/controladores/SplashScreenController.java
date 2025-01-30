@@ -37,7 +37,7 @@ public class SplashScreenController {
     /**
      * Inicializa el controlador.
      * Carga y reproduce el video de la Splash Screen en un MediaView.
-     * Configura una Timeline para actualizar la barra de progreso.
+     * Configura una línea de tiempo para actualizar la barra de progreso.
      */
     @FXML
     public void initialize() {

@@ -75,7 +75,7 @@ public class GeneradorController {
     private String currentText = "";
 
     /**
-     * Inicializa el controlador.
+     * Inicializa el controlador con todos los listeners y datos necesarios.
      */
     @FXML
     public void initialize() {
@@ -236,7 +236,7 @@ public class GeneradorController {
     }
 
     /**
-     * Genera una vista previa del carnet.
+     * Genera una vista previa del carnet usando los datos del formulario.
      */
     @FXML
     private void generarVistaPrevia() {
@@ -281,7 +281,7 @@ public class GeneradorController {
     /**
      * Valida los campos del formulario.
      *
-     * @return true si los campos son válidos, false en caso contrario
+     * @return true si los campos son válidos, false si no lo son
      */
     private boolean validarCampos() {
         Scene scene = portalField.getScene();
