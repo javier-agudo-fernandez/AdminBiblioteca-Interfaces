@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/AdminBiblioteca/src</OriginalElement>
+  <nodes>
+    <node x="-654.4478279569892" y="1754.9380215053764">com.adminbiblioteca.controladores.VistaPreviaController</node>
+    <node x="-654.4478279569892" y="1369.5695913978498">com.adminbiblioteca.controladores.SplashScreenController</node>
+    <node x="483.2520860215052" y="1694.5">com.adminbiblioteca.modelo.CarnetDatos</node>
+    <node x="111.19230107526914" y="1328.5992258064516">com.adminbiblioteca.utils.IdiomaUtil</node>
+    <node x="-316.0989139784946" y="1328.5992258064516">com.adminbiblioteca.utils.GestorIdioma</node>
+    <node x="-298.436559139785" y="1814.9380215053764">com.adminbiblioteca.controladores.LoginController</node>
+    <node x="-298.436559139785" y="2252.4007741935484">com.adminbiblioteca.App</node>
+    <node x="128.5" y="266.5">com.adminbiblioteca.controladores.HelpController</node>
+    <node x="12.907763440860094" y="1819.9007741935486">com.adminbiblioteca.controladores.GeneradorController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.adminbiblioteca.controladores.GeneradorController" target="com.adminbiblioteca.utils.GestorIdioma" relationship="TO_ONE">
+      <point x="-80.75" y="-488.5" />
+      <point x="93.6577634408601" y="1513.5992258064516" />
+      <point x="0.0" y="92.5" />
+    </edge>
+    <edge source="com.adminbiblioteca.controladores.GeneradorController" target="com.adminbiblioteca.modelo.CarnetDatos" relationship="CREATE">
+      <point x="80.75" y="-488.5" />
+      <point x="255.1577634408601" y="1643.0" />
+      <point x="674.7520860215052" y="1643.0" />
+      <point x="0.0" y="572.5" />
+    </edge>
+    <edge source="com.adminbiblioteca.controladores.LoginController" target="com.adminbiblioteca.utils.GestorIdioma" relationship="TO_ONE">
+      <point x="0.0" y="-188.5" />
+      <point x="-171.436559139785" y="1604.0496129032258" />
+      <point x="-202.09891397849458" y="1604.0496129032258" />
+      <point x="0.0" y="92.5" />
+    </edge>
+    <edge source="com.adminbiblioteca.controladores.VistaPreviaController" target="com.adminbiblioteca.utils.GestorIdioma" relationship="TO_ONE">
+      <point x="0.0" y="-248.5" />
+      <point x="-525.4478279569892" y="1663.0" />
+      <point x="-202.09891397849458" y="1663.0" />
+      <point x="0.0" y="92.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.3640092685370741" showDependencies="true" x="422.359088172042" y="1651.464" />
+  <SelectedNodes>
+    <node>com.adminbiblioteca.controladores.LoginController</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
