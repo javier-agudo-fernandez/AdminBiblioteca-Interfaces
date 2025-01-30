@@ -56,7 +56,7 @@
             </font>
         </Label>
 
-        <TextField fx:id="userField"  maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" promptText="Ingrese su usuario de administración" />
+        <TextField fx:id="userField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" promptText="Ingrese su usuario de administración" />
 
         <Label fx:id="passwordLabel" text="Contraseña:">
             <font>
@@ -78,11 +78,22 @@
          <Insets />
       </VBox.margin>
     </VBox>
+   <HBox alignment="CENTER_LEFT">
+       <Button fx:id="helpButton" minWidth="-Infinity" onAction="#mostrarAyuda" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: transparent;">
+           <graphic>
+               <HBox alignment="CENTER" spacing="5.0">
+                   <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="36.0" text="Ayuda" />
+                   <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@images/icons8-ayuda-50.png" />
+                       </image>
+                   </ImageView>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               </HBox>
+           </graphic>
+       </Button>
+    </HBox>
 
-    <!-- Créditos -->
-    <Label fx:id="copyrightLabel" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="333.0" style="-fx-font-size: 12px;" text="© 2024, Biblioteca Arrullín. Todos los derechos reservados.">
-        <padding>
-            <Insets bottom="20.0" left="20.0" />
-        </padding>
-    </Label>
 </VBox>
