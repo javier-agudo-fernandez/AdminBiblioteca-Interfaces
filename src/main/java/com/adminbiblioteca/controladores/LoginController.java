@@ -117,7 +117,6 @@ public class LoginController {
             Stage stage = new Stage();
             stage.setTitle("Ayuda");
             stage.setScene(new Scene(fxmlLoader.load()));
-            stage.setResizable(false);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
