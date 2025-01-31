@@ -3,24 +3,24 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #fff;
+    color: #000;
 }
 
 header {
-    background: #333;
+    background: #000;
     color: #fff;
     padding: 1rem 0;
     text-align: center;
-}
-strong{
-    font-size: 12pt;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 nav {
-    background: #444;
+    background: #333;
     color: #fff;
     padding: 0.5rem;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
@@ -36,6 +36,11 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ccc;
 }
 
 main {
@@ -60,28 +65,34 @@ main::before {
 }
 
 section {
-    margin-bottom: 2rem;
+    margin: 2rem auto; /* Centra el contenedor horizontalmente */
+    max-width: 800px; /* Define un ancho máximo para el contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
 }
 
 footer {
-    background: #333;
+    background: #000;
     color: #fff;
     text-align: center;
-    padding: 0.5rem 0; /* Reduce padding */
+    padding: 0.5rem 0;
     position: fixed;
     width: 100%;
     bottom: 0;
-    font-size: 0.8em; /* Make text smaller */
+    font-size: 0.8em;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
 }
 
 footer section#contacto {
     margin: 0;
-    padding: 0.5rem 0; /* Reduce padding */
+    padding: 0.5rem 0;
 }
 
 footer p {
     margin: 0;
-    padding: 0.5rem 0; /* Reduce padding */
+    padding: 0.5rem 0;
 }
 
 .large-text {
