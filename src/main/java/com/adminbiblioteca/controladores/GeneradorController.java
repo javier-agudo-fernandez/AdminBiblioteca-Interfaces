@@ -26,6 +26,8 @@ import javafx.stage.Stage;
 
 /**
  * Controlador para la generación de carnets.
+ * @version 1.1
+ * @author Javier Agudo
  */
 public class GeneradorController {
 

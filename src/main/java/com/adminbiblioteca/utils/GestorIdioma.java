@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 /**
  * Clase que gestiona el idioma de la aplicación.
  * Utiliza el patrón Singleton para asegurar que solo haya una instancia de GestorIdioma.
+ * @version 1.0
+ * @author Javier Agudo
  */
 public class GestorIdioma {
     private static GestorIdioma instancia;

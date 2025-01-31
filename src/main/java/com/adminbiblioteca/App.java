@@ -8,7 +8,11 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+/**
+ * Clase App que inicia la aplicación.
+ * @version 1.1.1
+ * @author Javier Agudo
+ */
 public class App extends Application {
 
     @Override

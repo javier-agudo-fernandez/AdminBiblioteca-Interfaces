@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 
 /**
  * Utilidad para actualizar los textos de la interfaz según el idioma seleccionado.
+ * @version 1.1
+ * @author Javier Agudo
  */
 public class IdiomaUtil {
 

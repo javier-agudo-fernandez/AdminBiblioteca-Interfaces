@@ -6,6 +6,8 @@ import javafx.scene.web.WebView;
 
 /**
  * Controlador para la pantalla de ayuda.
+ * @version 1.1
+ * @author Javier Agudo
  */
 public class HelpController {
 

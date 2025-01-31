@@ -17,6 +17,8 @@ import java.util.ResourceBundle;
 
 /**
  * Controlador para la pantalla de inicio de sesión.
+ * @version 1.1
+ * @author Javier Agudo
  */
 public class LoginController {
 

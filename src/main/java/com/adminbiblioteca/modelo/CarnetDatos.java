@@ -5,6 +5,8 @@ package com.adminbiblioteca.modelo;
 
     /**
      * Clase que representa los datos de un carnet.
+     * @version 1.0
+     * @author Javier Agudo
      */
     public class CarnetDatos {
         private String nombre;

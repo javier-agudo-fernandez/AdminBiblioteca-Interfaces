@@ -24,6 +24,8 @@ import java.util.Objects;
 
 /**
  * Controlador para la pantalla de carga (Splash Screen).
+ * @version 1.1
+ * @author Javier Agudo
  */
 public class SplashScreenController {
 

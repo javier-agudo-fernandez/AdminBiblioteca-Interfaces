@@ -30,6 +30,8 @@ package com.adminbiblioteca.controladores;
 
     /**
      * Controlador para la vista previa del carnet.
+     * @version 1.1
+     * @author Javier Agudo
      */
     public class VistaPreviaController {
 
